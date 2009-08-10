@@ -18,11 +18,11 @@ class repository_nanogong extends repository {
         }
     }
     
-    public static function get_instance_option_names() {
+    public static function get_type_option_names() {
     	return array('audio_format', 'sampling_rate');
     }
     
-    public function instance_config_form(&$mform) {
+    public function type_config_form(&$mform) {
         $audio_format_options = array(
         	get_string('audio_format_imaadpcm', 'repository_nanogong'),
         	get_string('audio_format_speex', 'repository_nanogong'),
@@ -39,8 +39,6 @@ class repository_nanogong extends repository {
         
         $mform->addRule('audio_format', get_string('required'), 'required', null, 'client');
         $mform->addRule('sampling_rate', get_string('required'), 'required', null, 'client');
-		
-        return false;
     }
 
     /**
@@ -88,14 +86,18 @@ class repository_nanogong extends repository {
      */
     public function print_recorder() {
         global $CFG, $PAGE;
+
         $sampling_rates = array(
         	array(8000, 11025, 22050, 44100),
         	array(8000, 16000, 32000, 44100)
         );
         $audio_formats = array('ImaADPCM', 'Speex');
-                
-        $sampling_rate = $sampling_rates[$this->options['audio_format']][$this->options['sampling_rate']];
-        $audio_format = $audio_formats[$this->options['audio_format']];
+        
+        $audio_format = get_config('nanogong', 'audio_format');
+        $sampling_rate = get_config('nanogong', 'sampling_rate');
+        
+        $sampling_rate = $sampling_rates[$audio_format][$sampling_rate];
+        $audio_format = $audio_formats[$audio_format];
         
         // we need some JS libraries for AJAX
         require_js(array('yui_yahoo', 'yui_dom', 'yui_event', 'yui_element', 'yui_connection', 'yui_json'));
