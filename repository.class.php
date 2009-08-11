@@ -37,8 +37,7 @@ class repository_nanogong extends repository {
         $mform->addElement('select', 'audio_format', get_string('audio_format', 'repository_nanogong'), $audio_format_options);
         $mform->addElement('select', 'sampling_rate', get_string('sampling_rate', 'repository_nanogong'), $sampling_rate_options);
         
-        $mform->addRule('audio_format', get_string('required'), 'required', null, 'client');
-        $mform->addRule('sampling_rate', get_string('required'), 'required', null, 'client');
+//        $mform->setHelpButton('audio_format', array('audio_format', get_string('audio_format', 'repository_nanogong'), 'repository_nanogong'));
     }
 
     /**
