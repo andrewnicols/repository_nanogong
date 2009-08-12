@@ -118,7 +118,7 @@ class repository_nanogong extends repository {
 		echo '<param name="AudioFormat" value="', $audio_format, '" />';
 		echo '<param name="SamplingRate" value="', $sampling_rate, '" />';
         echo '<p>', get_string('javanotfound', 'repository_nanogong'), '</p>';
-		echo '</applet><br />';
+		echo '</applet><br /><br />';
 		echo '<input type="submit" value="', get_string('save', 'repository_nanogong'),'" />';
 		echo '</form>';
 		echo '</div>';
